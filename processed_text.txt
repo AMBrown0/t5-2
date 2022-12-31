@@ -1,0 +1,1 @@
+linear regression is the “hello world” of machine learning. it requires training a model that will predict continuous numeric values from input features, such as the average number of rooms per dwelling, the per capita crime rate by town, and so on. we will start by assuming values for w1 and b and then compare the predicted output with the actual output (target)

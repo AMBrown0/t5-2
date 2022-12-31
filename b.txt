@@ -1,0 +1,328 @@
+ 1  
+ 
+ Most of what  you need to remember about basic statis tics 
+ 
+Consider a  random variable called X  that is a  time series  a set of observations ordered in time 
+consisting of the following 20 observations   
+        114 126 123 112 68 116 50 108 163 79   67 98 131 83 56 109 81 61 90 92   
+ 
+ 
+ How should we forecast what will happen next   The simplest forecasting model that we might 
+consider is the mean  model 
+1 which assumes that the time series consists of  independently and 
+identically distributed  iid values  as if each observation is randomly drawn from the same 
+population  Under this assumption the next  value should be predicted to be equal to the 
+historical sample mean if the goal is to minimize mean squared error   This might sound trivial 
+but it isnt   If you understand the details of how this works you are halfway to understanding 
+linear regression   No kidding   see section 3 of the regression notes handout  
+ To set the stage for using the mean model for forecasting lets review some of the most basic concepts of statistics  Let  
+X  a random variable with its individual values denoted by x
+1 x2 etc  
+N  size of the entire population of values of X  possibly infinite2 
+n  size of a finite sample of X  
+                                                 
+1 This might also be called a constant model or an intercept only regression  
+2 The term population does not refer to the number of distinct values of X   The same  value could occu r many 
+times in the population For example the values of X  could be  integers or just 0s and 1s  
+c 2014 by Robert Nau all rights reserved   Main web site  peopledukeedurnauforecasting htm  
+020406080100120140160180
+0 5 10 15 20 25Review of basic statistics and the simplest 
+forecasting model  the sample mean  
+ Robert Nau  
+Fuqua School of Business Duke University  
+August 2014   2 The population true mean  µ is the average of the all values in the population  
+ 
+ 
+The population variance   σ2 is the average squar ed deviation from the true mean  
+ 
+   
+The population standard deviation 
+σ is the square root of the population variance ie the root 
+mean squared deviation from the true mean  
+ 
+In forecasting applications  we never observe the whole population   The problem is to forecast 
+from a finite sample  Hence statistics such as means and standard deviations must be estimated with error  
+ The sample mean is the average of the all values in the sample  
+   This is the point forecast of the mean model for all future values of the same variable    The 
+sample mean of the series X that was shown above is 9635   So under the assumptions of the mean model the point forecast for X for all future time periods should be 9635  The sample variance   s
+2 is the average squared deviation from the sample mean except with a 
+factor of n 1 rather than n in the denominator  
+    The sample standard deviation is the square root of the sample variance denoted by  s  The 
+sample standard deviation of the series X is equal to 2896  
+Why the factor of n 1 in the denominator  of the sample variance formula  rather than n  This 
+corrects for the fact that the mean has been estimated from the same sample which fudges it in 
+a direction that makes the mean squared deviation around it less than it ought to be  Technically 
+we sa y that a degree of freedom for error has been used up by calculating the sample mean 
+from the same data   The correct adjustment to get an unbiased estimate of the true variance is 
+to divide the sum of squared deviations by the number of degrees of fre edom not the number of 
+data points  
+   1N
+i ixNµ
+2
+2 1N
+i ix
+Nµ
+σ
+
+1n
+i i X xn
+2
+2 1
+1n
+i ixX
+sn
+ 3 The corresponding statistical functions in Excel3 are 
+ Population mean     AVERAGE  x1 xN 
+ Population variance     VAR P x1 xN 
+ Population std dev    STDEV P x1 xN 
+ Sample mean     AVERAGE  x1 xn 
+ Sample  variance     VARS  x1 xn 
+ Sample std dev     STDEV S x1 xn 
+ 
+Now why all this  obsession with squared error  It is traditional in the field of statistics  to 
+measure variability in terms of average squared deviations instead of average absolute4 
+deviations around a central value  because s quared error has a lot of nice properties  
+ The central value around which the sum of  squared deviations are minimized is  in fact  
+the sample mean   This may not be intuitively obvious  but it is easily  proved by calculus 
+So when we fit forecasting models by minimizing their  sums of squared errors  we are 
+implicitly calculating means  even when we are estimating many things at once  In 
+particular  when we estimate the coefficients in a linear regression model by minimizing 
+squared error  which our regression software does for us automatically we are implicitly 
+calculating the mean effect of each of the independent variables on the dependen t 
+variable in the presence of the others  
+ Variances rather than standard deviations  or mean absolute deviations  are additive  
+when random variables that are statistically independent are added together  
+ From a decision theoretic viewpoint large errors often  have disproportionately  worse 
+consequences than small errors  hence squared error is more representative of the 
+economic consequences of error   Why  A small error  in your analysis  will probably not 
+result in a bad decision or a wrong conclusion  The future may turn out slightly  different 
+from what you expected but you probably would have done the same thing anyway  so it 
+doesnt matter very much   However if the error is larg e enough then it may lead to a  
+wrong headed  decision or conclusion that will have bad consequences for you or 
+somebody else  So in many situations we are  relatively more concerned about the 
+occasional large error than the more frequent small error  Minimizing squared error 
+when choosing among forecasting models is a rough guideline for doing this 
+ Variances and covariances also play a key role in normal distribution theory  and 
+regression analysi s as we will see  All of the calculations that need to be do ne to fit a 
+regression model to a sample of data can be done based only on knowledge of the sample 
+means and sample variances and covariances of the variables  
+                                                 
+3 In earlier versions of Excel the sample standard deviation and variance functions were STDEV and VAR and the 
+corresponding functions for population statistics were STDEVP and VARP  
+4 Actually there is a lot of interest nowadays in the use of absolute error rather squared error as the objective to be 
+minimized when fitting models especially in econometrics  This approach yields parameter estimates that are less 
+sensitive to the pres ence of a few large errors and is also useful for model selection in high dimensional data sets 
+but it is be yond the scope of this course   4  
+The standard error of the mean is  
+ 
+  
+ This is the estimated standard deviation of the error that we would make in using the 
+sample mean  
+X as an estimate of the true mean µ  if we repeated this exercise with 
+other independent samples of size n  
+ It measures the precision  of our estimate of the unknown true mean from a limited 
+sample of data  
+ As n gets larger SE mean gets smaller and the distributio n of the error in estimating the 
+mean approaches a normal  distribution   This is one of the most fundamental and 
+important concepts in statistics  known as the  Central Limit Theorem  
+ In particular it decreases in inverse proportion to the square root of the sample size so for example 4 times as much data reduces the standard error of the mean by 50  
+ Whats the difference between a standard deviation  and a standard error  
+ The term standard deviation refers to the actual rootmean squared deviation of a 
+population or a sample of data around its mean  
+ The term standard error refers to the estimated  rootmean squared deviation of the 
+error in a parameter estimate or a forecast under repeated sampling  
+ Thus a standard error is the standard deviation of the error in estimating or forecasting something  
+The mean is not the only  statistic  for measuring a typical or representative value drawn from 
+a given population  For example the median 50
+th tile is another summary statistic that 
+describes  a representative member of a population  If the distribution is symmetric  as in the 
+case of a normal distribution  then the sample mean and  sample media n will be a pproximately 
+the same but if the distribution  is highly skewed with more extreme values on one side than 
+the other then they may differ significantly   For example the distribution of household income in the US is highly sk ewed  The m edian US household income in 2010 was 49445 whereas 
+the mean  household income was 67530 about 37 higher reflecting the effect of a small 
+number of households with extremely high incomes  Which number better measures the income of the  average household     
+That being said the most commonly used forecasting  models such as regression models focus 
+on means  together with  standard deviations  and correlations  as the key descriptive statistics  
+and point forecasts  are usually expressed in terms of mean values rather median values  because 
+this is the way to minimize mean squared error  Also i n many applications such as sales 
+forecasting the total over many periods is what is ultimately of interest and predictions of mean values in different periods andor different locations can be added together to predict totals  
+Another issue is that w hen forecasting at a very fine level of detail eg units of a given product 
+sold at a given store on a g iven day the median value of the variable  in a s ingle period could be means SEn 5 zero  Expressing a forecast for such a va riable in terms of the median of its distribution would 
+be trivial and uninformative 
+Furthermore n onlinear t ransformations of the data eg log or power transformations can often  
+be used to turn skewed distributions into symmetric ideally normal ones allowing such data to 
+be well fitted by models that focus on mean values 
+ 
+Forecasting with t he mean model  
+ Now lets go forecasting with the mean model 
+ Let          denote a forecast  of x
+n1 based on data observed up to period n 
+ If x n1 is assumed to be independently drawn from the same population as the sample x 1 
+ x n  then the forecast that minimizes mean squared error is simply the sample mean  
+  
+ 
+In the special case of the mean model the sample standard deviation  s is what is called th e 
+standard error of the model  ie the estimated standard deviation of the intrinsic risk  Now 
+what is the standard deviation of the error we can expect to make in usin g        as a forecast for 
+x
+n1  This is called the standard error of the forecast SEfcst and it depends on both the 
+standard error of the model  and the standard error of the mean  Specifically it is the square root 
+of the sum of the squares of those two numbers  
+   
+      
+  Note that if you square both sides what you have is that the estimated variance of the forecast 
+error is the sum of the estimated variance of the noise and the estimated variance of the error in 
+estimating the mean    
+  1ˆnxX
+22 11        1     1 2fcst mean SE s SE s snn   
+The standard error of the mean 
+measures the parameter  risk error in 
+estimating the signal in the data  
+ 1ˆnx
+1ˆnx
+The standard error of the model  measures the 
+intrinsic risk estimated noise in the data  
+for the mean model the standard error of the 
+model is just the sample standard deviation           measures the forecasting risk 
+assuming the model is correct  fcstSEEnd result  for the mean 
+model            is slightly 
+larger than the sample 
+standard deviation  fcstSE 6 Variances of the different components of forecast error are  always  additive in this way  for 
+linear5 forecasting mod els with normally distributed errors   In fact we can call this the 
+fundamental law of forecasting risk  
+It does not take into account the model risk though  
+For the mean model the result is that the f orecast standard error is slightly larger than the 
+sample standard deviation namely by a factor of  about  11 2n   Even for a  sample size  as 
+small as  n20 there is not much difference 1140   1025 so t he increase in forecast standard 
+error due to parameter risk ie the need to estimate an unknown mean is only 25   In 
+general the estimated parameter risk is a relatively small component of the forecast standard 
+error  if i the number of data points is large in relation to the number of parameters estimated 
+and ii the model is not attempting to extrapolate trends too far into the future or otherwise 
+make predictions for what will happen far away from the center of mass of the data that was fitted  eg for historically unprecedented values of independent variables in a regression model  
+ Confidence intervals    A point forecast should always be accompanied by a confidence interval  
+to indicate the accuracy that is claimed for it  but what does confidence mean  Its sort of like 
+probability but not exactly  Rather  
+ An x confidence interval is an interval calculated by a rule  which has the property that 
+the interval will cover the true value x of the time under simulated  conditions 
+assuming the model is correct  
+ Loosely speaking there is an x probability  that your future data will fall in your  x 
+confidence interval  for the forecast but only if your model and its underlying 
+assumptions are correct  and the sample size is reasonably large   This is why we test  
+model  assumptions  and why we should be cautious in drawing inferences from small 
+samples
+6 
+ If the true distribution of the noise  is a normal  distribution  then a confidence interval  for 
+the forecast  is equal to the point forecast plus orminus some number of forecast standard 
+errors  that number being the so called critical tvalue  
+                                                 
+5 A linear forecasting model is one in which the forecast is a linear function of other variables whose values are 
+known  The mean model is the simplest case a trivial example of a linear function and linear regression models 
+and ARIMA models are more general cases  In the case of the mean model the parameter risk is a constant the 
+same for all forecasts  In m ore general models the parameter risk associated with a particular forecast depends on 
+the values of independent variables that are multiplied by the parameters  The parameter risk is larger for values of 
+the independent variables that are extreme relati ve to the values in the sample of data to which the model was fitted  
+6 If the sample size is small then information that you possess prior to the data analysis even if it is very 
+subjective becomes relatively much more important and should be taken int o account when making inferences or 
+predictions  So called Bayesian methods of inference and prediction provide a systematic way for doing this and 
+are increasingly being used throughout the field of statistics  The statistics department at Duke Univer sity is one of 
+the worlds leading centers of research in this area  Variance of forecasting risk  variance of intrinsic risk  variance of parameter risk   7  
+ More precisely f or a confidence interval with confidence level p the appropriate number  
+of standard errors is the  critical value of the t distribution with a tail area probabilit y of 
+1p and d degrees of freedom  for error where th e number of degrees of freedom  df 
+is the sample size  n minus the number of parameters which have been estimated from it 
+which is 1 in the case of the mean model  
+ 
+ In Excel  the critical t value for a 2 sided confidence interval with confidence level p 
+when there are d degrees of freedom is given by the formula  T INV2T1p d or just 
+TINV 1p d in older versions of Excel 
+ 
+ When the 1 parameter mean model is fitted to our  20observation sample of data the 
+number of degrees of freedom is 20  1  19 so for  a 95 2 sided confidence interval 
+the critical t value is T INV2T 5 19   or just TINV51 9 in older versions of 
+Excel  which comes out to be  2093 
+ 
+Here is a so called t table showing the critical values of the t distribution for some 
+representative values of the confidence level and the number of degrees of freedom  
+ 
+                         Confidence level for 2 sided confidence interval               
+ 50 68 80 90 95  99 997  
+         df   Infinity  067 1 128 164 196 258 297 
+                200 068 1 129 165 197 260 3 
+                100 068 1 129 166 198 263 304 
+                 50 068 1 130 168 201 268 312 
+                 20 069 102 133 173 209 285 34 
+                 10 070 105 138 181 223 317 402 
+Rule ofthumb value  23 1 43 53 2 83 3 
+ 
+As the number of degrees of freedom goes to infinity the t distribution approaches a standard 
+normal distribution whose critical values are shown in the first row of the table  As you can see the critical t value is not very sensitive to the number of degrees of freedom except for very low 
+numbers of degrees of freedom in conjunction with high levels of confidence the shaded cells in the lower right  In most cases the critical values of the t  distribution are not much different from 
+those of the standard normal distribution  The row below  the table shows the rule of thumb 
+values that closely approximate the actual  critical  tvalues in most situations  In particular the 
+ruleofthumb value for a 95 confidence interval is 2 so 
+ 
+  Confidence interval  forecast   critical t value   standard error of forecast   8  
+More rules   of thumb for confidence intervals  
+ For n20 a 68 confidence interval is roughly plus orminus one standard error a 95 
+confidence interval is plus orminus two standard errors and a 997 confidence interval 
+is plus orminus three standard errors  
+ A 50 confidence interval is roughly  plus or minus two thirds  of a standard error  which 
+is one half the width of an 80 confidence interval one third the width of a 95 
+confidence interval and one quarter the width of a 99 confidence interval 
+ A confidence interval that covers 95 of the  data is often too wide  to be very informative   
+A 1outof20 chance of falling outside some interval is a bit hard to visualize  50 a 
+coin flip or 90 1 outof10 mi ght be easier for a non specialist  to understand  
+Most statistical software in cluding RegressIt  allows you the option to choose the level 
+of confidence for which to calculate confidence intervals  
+ Because the distribution of errors is generally bell shaped with a central peak and thin 
+tails you hope the 95 limits are pretty far out compared to where most of the data is really expected to fall ie they may make the forecast look less accurate than it really is  
+ Another thing to consider in deciding which level of confidence to use for constructing a confidence interval is w hether or not you are concerned about extreme events   If it is a 
+highstakes decision you may be very interested in the low probability events in the tails 
+of the distribution in which case you might really want to focus attention on the location of the  edge of the 95 or even the 99 confidence interval for your prediction  In this 
+case you will also be very interested in whether the distribution of errors is really a normal distribution  If it isnt these calculations will not be realistic   But if it is a routine or low stakes decision then maybe you are more interested in describing the 
+middle range of the distribution eg the range in which you expect 50 or 80 or 90 of the values to fall  
+ My own preference  just report the forecast and i ts standard error and leave it to others 
+to apply the rules above to obtain whatever confidence intervals they want 
+ 
+More about t  
+ 
+The t distribution is called Students t  distribution because it was discovered by WS Gossett 
+of the Guinness Brewery who was a pioneer of statistical quality control in the brewing industry 
+and who  also published scientific articles anonymously under the pen name Student   
+Mathematically t he t distribution is the distribution of  the quantity  
+  which is the number of standard errors by which the sample mean deviates from the true mean 
+when the standard deviation of the population is unknown ie when SE
+mean is calculated from s  
+rather than σ    The t distribution resembles a standard normal  z distribution but with slightly 
+meanX
+SEµA 95 confidence interval is roughly the forecast plus orminus two standard errors   9 fatter tails when the number of degrees of freedom is small  As pointed out above t he t
+distribution approaches a normal distribution as the number of degrees of freedom goes to 
+infinity   The following chart shows a comparison of the normal distribution and t  distribution  for 
+5 10 and 20 degrees of freedom  As you can see they are quite close  
+ 
+In comparing a  t distribution to a standard normal dis tribution what matters  is the tail area 
+probability that falls outside some given number of standard errors  a 95 confidence interval is the number of standard errors plus orminus  outside of which there is a tail area probability of 
+5  For a lower number of degrees of freedom  the tails are slightly fatter so a greater 
+number of standard errors is needed for a given level of confidence  that your estimate wont 
+deviate from the true value by more than that  amount    But in most cases the empirical rules of 
+the thumb given below  the t table  on page 16 are a very good approximation  
+ Our example continued  
+ Time series X n20  
+         114 126 123 112 68 116 50 108 163 79   67 98 131 83 56 109 81 61 90 92  The true mean  and st andard deviation of the population from which this time series was 
+randomly sampled are µ  100  σ  30 unbeknownst to us in real life   The sample  mean and 
+standard deviation which are a ll we can observe are  
+  and the standard errors of the mean and forecast are  
+      Normal vs t  much difference
+4 3 2 1 0 1 2 3 4
+Normal t with 20 df t with 10 df t with 5 df
+2896  20 648 65meanSE  
+222896 648 2968 30fcstSE  9635 96 2896 29 Xs   10 We can use the standard error of the forecast to calculate confidence intervals for the forecasts  
+ 95 confidence interval      9635   2093   2968         34  158  
+ 50 confidence interval      9635   0688   2968         76   117 
+ These are based on the critical t values  TINV5 19  2093 and TINV50 19  
+0688   
+ 
+Lets suppose that X is stored in a column on a worksheet next to a column of row index numbers the time scale and suppose that the time scale extends to row 25 representing future time periods for which forecasts are desired and that Row and X have been assigned as range names for the two columns  
+ 
+ 
+   

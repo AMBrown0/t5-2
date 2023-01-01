@@ -77,7 +77,7 @@ if __name__ == '__main__':
     The Trump administration has previously fixed May 1 as a possible date to reopen the world's largest economy, but the president said some states may be able to return to normalcy earlier than that.
     """
     text=read_pdf("./basic_statistics_for_forecasting.pdf")
-    text=read_web_page_text(r"https://medium.com/@sibrahim1396/linear-regression-from-first-principle-2042e4372326#:~:text=In%20machine%20learning%2C%20a%20linear,referred%20to%20as%20the%20target.")
+    text=read_web_page_text(r"https://www.analyticsvidhya.com/blog/2022/01/introduction-to-knn-algorithms/#:~:text=KNN%20also%20called%20K%2D%20nearest,assumptions%20for%20underlying%20data%20assumptions.")
     write_text_to_file("./origonal_text.txt", text)
     preprocess_text = text.strip().replace("\n", "")
     t5_prepared_Text = "summarize: " + preprocess_text

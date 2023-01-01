@@ -1,4 +1,24 @@
-Linear Regression from First Principle | by Ibrahim Salihu Yusuf | MediumIbrahim Salihu YusufFollowOct 29, 2019·6 min readLinear Regression from First PrincipleLinear regression is the “hello world” of machine learning. In this article we will go through the mathematics behind linear regression then code it from scratch. Little familiarity of Numpy and Pandas shall be assumed.In machine learning, a linear regression problem requires training a model that will predict continuous numeric values from a set of input values. So that given a set of input values, which are called features, a linear regression model outputs a value which is referred to as the target. The task in linear regression is to form a hypothesis which will, to a good level of accuracy, output the target from a set of input features. Mathematically, this hypothesis can be written as,where w1, w2 are the weights; x1, x2 are the input features; and b is the bias.To develop a linear regression model based on the hypothesis of equation (1), we need to learn from a collection of input features (training examples), the optimal values of weights and bias that will transform the inputs to a target. This process of learning from training examples is called training. The result of training is a model with optimal values of weights that can transform our input features to a predicted target.In training our linear regression model we will make use of the Boston housing prices data. This data shows the value of houses based on different features such as the average number of rooms per dwelling, the per capita crime rate by town, the proportion of owner-occupied units built prior to 1940 and so on. The problem at hand is to train a model that will predict the median value of owner-occupied homes given a set of input features. We will start by developing a hypothesis based on a single feature and later add more features. Let us propose a hypothesis about the value of houses based on the average number of rooms per dwelling. It is a good practice to visualize the data one is working with. Plotting the average number of rooms against the house values suggest a linear relationship as shown in figure 1.Figure 1: A plot of input feature versus targetRemember that we are not out to come up with a 100% accurate hypothesis, but one that can generalize with an acceptable level of accuracy. Based on this, we can assume a linear relationship as shown by the red line in figure 1, which can be modelled by equation (2).The input feature, in this case the average number of rooms, x1 is the independent variable in equation 2. We will learn the optimal values for w1 and b from the set of input examples we have. In machine learning, we start by assuming values for w1 and b then we evaluate our hypothesis and compare the predicted output with the actual output (target). The difference between the actual versus the predicted outputs is the cost (loss) with which we determine how optimal the values of w1 and b are, but in order to attain optimal values we need a rule that we will follow to adjust our weight and bias until we arrive at optimal values. There are many such rules that can be followed, but in machine learning the most commonly used is the gradient descent algorithm.Gradient DescentThe gradient descent algorithm works with a differentiable cost function and computes an update value for each weight and bias for every step of the gradient descent algorithm. So that each step gives the weights and bias a nudge in the direction of minimum cost. Training a linear regression model using gradient descent can be achieved by the following steps:Randomly initialize the weightsEvaluate the hypothesis to get a predicted outputCompute the cost i.e evaluate the cost functionCompute the gradients, which can be understood to be the contribution of each weight and bias to the resultant cost in step 3Update the weightsLet us go through these steps mathematically.Having seen how a single step of gradient descent is performed mathematically. Let us see how it can be coded in Python using Numpy and Pandas library.Linear Regression CodeWe shall be working with Jupyter Notebook with Numpy and Pandas library installed. In order to have this, you can simply install Anaconda.Let us start by importing the libraries we will be working withThen we read in our dataset and fetch the input features and targets. We also add the coefficient of the bias, which is 1. This is because we want to have the input features and bias in a single matrix.Now we have our set of input features and the coefficient of the bias as shown below:To begin with, we initialize our weights to zero and this is achieved by the code snippet belowThe result is a vector with two weights, one for the input feature and the other for the bias.The following code snippet illustrate the remaining stepsNow we have completed a single step of the gradient descent. However, a single step cannot get us optimal weights, we will have to iterate for a number of steps to achieve optimal values. The most important thing to take note about gradient descent is that for each step the cost must be decreasing to achieve convergence. We can either train for a predetermined number of steps or stop when convergence has been reached, that is when the cost no longer decreases.To train for a number of steps we initialize our training hyper-parameters: number of steps and learning rate, then train as illustrated in the following code snippet.After training for 100 steps, the graph in figure 2 reveals how the cost was reducing while training. We can see that after a number of gradient descent steps the loss remained nearly constant, at this point we say training has converged. In other words, optimal values for w1 and b has been achieved.Figure 2: Graph of training losses versus number of stepsWith this we have successfully trained our first linear regression model and we can see it converged. The Jupyter notebook for this article can be found here. Although this is not a practical linear regression model, remember that we only used one feature which is the average number of rooms. In a subsequent article we will train our model using more features.Thank you for reading.Machine LearningLinear Regression----More from Ibrahim Salihu YusufFollowLove podcasts or audiobooks? Learn on the go with our new app.Try KnowableRecommended from MediumChanuka JayasankainAnalytics VidhyaGet to know about Cluster AnalysisAndrew LoaderImpact of Machine Learning on Optimization & PersonalizationPrashant DandriyalAI Beginners’ Playground: Why You Shuffling Your Numeric Data Matters.Anuradha WickramarachchiinTowards Data ScienceVariational Autoencoders and BioinformaticsAvinash NavlaniinThe StartupRecommendation System for Streaming PlatformsMandy Gu“SeeFood”: Creating a Binary Classifier using Transfer LearningDeepak JaininApplied Machine LearningDimensionality Reduction and Visualization - Part-4 - tSNELars NielseninTowards Data ScienceA pictorial guide to understanding Random Forest AlgorithmAboutHelpTermsPrivacyGet the Medium appGet unlimited accessIbrahim Salihu Yusuf7 FollowersFollowHelpStatusWritersBlogCareersPrivacyTermsAboutText to speech
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Introduction to KNN Algorithms - Analytics Vidhya
 
 
 
@@ -30,6 +50,983 @@ Linear Regression from First Principle | by Ibrahim Salihu Yusuf | MediumIbrahim
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+search
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Start Here
+
+
+
+
+Machine Learning
+
+
+Deep Learning
+
+
+NLP
+
+
+
+
+
+Articles
+
+
+
+Guides
+
+
+Machine Learning
+
+
+Deep Learning
+
+
+NLP
+
+
+Computer Vision
+
+
+Data Visualization
+
+
+Interview Questions
+
+
+More
+
+Infographics
+Jobs
+Podcasts
+E-Books
+For Companies
+Datahack Summit
+DSAT
+Glossary
+Archive
+
+
+ Write an Article
+
+
+
+
+Courses
+
+
+
+Certified AI & ML BlackBelt Plus
+
+
+Data Science Immersive Bootcamp
+
+ All Courses
+
+
+
+
+Blogathon
+
+
+DataHour
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Write an Article
+Creators Club
+
+
+
+Sign in
+
+
+Join Now
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Manage your AV Account
+My Hackathons
+My Bookmarks
+My Courses
+My Applied Jobs
+
+
+Sign Out
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+D
+
+
+
+H
+
+
+
+M
+
+
+
+S
+
+
+
+
+×
+
+
+
+
+
+
+
+
+
+Home
+
+
+
+
+
+
+
+
+
+
+Interview Questions
+Related Videos
+Related Articles
+Free Courses
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign in
+
+
+Join Now
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Manage your AV Account
+My Hackathons
+My Bookmarks
+My Courses
+My Applied Jobs
+
+
+Sign Out
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Introduction to KNN Algorithms
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Facebook
+
+
+
+
+
+Twitter
+
+
+
+
+
+Linkedin
+
+
+
+
+
+
+
+
+
+
+
+
+Varun Jain —
+Published On January 31, 2022 
+
+Algorithm
+Beginner
+Machine Learning
+
+
+
+This article was published as a part of the Data Science Blogathon.
+What is KNN?
+KNN also called K- nearest neighbour is a supervised machine learning algorithm that can be used for classification and regression problems. K nearest neighbour is one of the simplest algorithms to learn. K nearest neighbour is non-parametric i,e. It does not make any assumptions for underlying data assumptions. K nearest neighbour is also termed as a lazy algorithm as it does not learn during the training phase rather it stores the data points but learns during the testing phase. It is a distance-based algorithm.
+In this article, I will explain the working principle of KNN, how to choose K value, and different algorithms used in KNN.
+Working Principle Of KNN
+
+
+
+Source:https://www.javatpoint.com/k-nearest-neighbor-algorithm-for-machine-learning
+Consider there are two categories, category A and category B. We want to classify which category the new datapoint lies in. To classify the point we can use the KNN algorithm which observes the behaviour of the nearest points and classify itself accordingly. In this case, the behaviour is which category it belongs to.
+Consider an XY plane with data points plotted in the graph.
+
+
+Choose the K value
+
+
+Calculate the distance between all the training points and new data points.
+
+
+Sort the computed distance in ascending order between training points and new data points.
+
+
+Choose the first K distances from the sorted list
+
+
+Take the mode/mean of the classes associated with the distances.
+
+
+For classification problem compute mode else for regression problem compute mean with the distances.
+Distance Metrics
+It is essential to choose the most appropriate distance metrics for a particular dataset. The following are the various distance metrics:
+Minkowski Distance-Minkowski distance is calculated where distances are in the form of vectors that have a length and the length cannot be negative.
+Manhattan Distance-The distance between two points is the sum of the absolute differences of their Cartesian coordinates.
+Euclidean Distance- It is a measure of the true straight line distance between two points in Euclidean space.
+Cosine Distance-It is used to calculate the similarity between two vectors. It measures the direction and uses the cosine function to calculate the angle between two vectors.
+Jaccard Distance-It is similar to cosine distance as both the methods compare one type of attribute distributed among all data. The Jaccard approach looks at the two data sets and finds the incident where both values are equal to 1.
+How to choose the K value?
+One of the trickiest questions to be asked is how we should choose the K value.
+
+
+One should not use a low value of K= 1 because it may lead to overfitting i,e during the training phase performs good but during the testing phase, the model performs badly. Choosing a high value of K can also lead to underfitting i.e it performs poorly during the training and testing phase.
+
+
+We should not use even values of K when classifying binary classification problems. Suppose we choose K=4 and the neighbouring 4 points are evenly distributed among classes i.e 2 data points belong to category 1 and 2 data points belong to category 2. In that case, the data point cannot classify as there is a tie between the classes.
+
+
+Choose K value based on domain knowledge.
+
+
+Plot the elbow curve between different K values and error. Choose the K value when there is a sudden drop in the error rate.
+
+
+
+Source:https://prwatech.in/blog/tag/k-nearest-neighbors-algorithm-tutorial/
+
+
+Different Algorithms of KNN
+Before going forward learning different algorithms of KNN it is important to know what a tree is. A tree is. A tree is a non-linear data structure used to store collections of objects which are nodes that are linked together to represent the hierarchy.,
+There are four different algorithms in KNN namely kd_tree,ball_tree, auto, and brute.
+kd_tree=kd_tree is a binary search tree that holds more than x,y value in each node of a binary tree when plotted in XY coordinate. To classify a test point when plotted in XY coordinate we split the training data points in a form of a binary tree. We can choose to split the root node through X coordinate by taking its median.For example training set have points [(1,2),(2,3),(3,4),(4,5),(5,6),(6,7),(7,8)].By splitting the tree through X-axis we see the point (4,5) forms the root. In the next layer of the binary tree we split the data point by taking the median but rather than splitting it based on the X-axis we split it concerning the Y-axis. On the left-hand side, we get (1,2),(2,3),(3,4) and on the right hand, we get (5,6),(6,7),(7,8).On the left-hand side taking the median concerning y axis[2,3,4] we get (2,3).On the right-hand side taking the median concerning the Y-axis we get (6,7).[Note that y points on the left-hand side are[6,7,8]. We take the median of these points and not the X-axis of it]. The process carries on alternatively until all nodes are split.
+
+
+
+Source:https://www.desmos.com/calculator
+ball_tree=This algorithm is based on ball structure. This algorithm forms clusters of ball structure with the data points. The first cluster has all the training data points. The point with maximum distance to the centroid forms the new centroid of the second cluster. The main principle of the ball tree algorithm is dividing the data points into clusters. The cluster keeps on dividing until a particular defined depth or limit is reached.
+brute=Brute force algorithm tries to find the most optimal value or class from an exhaustive list to classify the test point accurately.
+auto=Auto algorithm will try to find the most optimal point or class based on the values passed in the fit method. We can specify a range of values for k value, weights, and leaf size hyperparameters of K nearest neighbour.
+Advantages & Disadvantages of KNN Algorithm
+Advantages
+
+
+It is very easy to understand and implement
+
+
+It is an instance-based learning(lazy learning) algorithm.
+
+
+KNN does not learn during the training phase hence new data points can be added with affecting the performance of the algorithm.
+
+
+It is well suited for small datasets.
+
+
+Disadvantages
+
+
+It fails when variables have different scales.
+
+
+It is difficult to choose K-value.
+
+
+It leads to ambiguous interpretations.
+
+
+It is sensitive to outliers and missing values.
+
+
+Does not work well with large datasets.
+
+
+It does not work well with high dimensions.
+
+
+Conclusion
+In this article, we came across the introduction and working principle of KNN. We also looked at various distance metrics used in KNN to compute the distance between data points and various different KNN algorithms used when performing hyperparameter tuning and when to use them.
+Read more articles on KNN Algorithms here.
+The media shown in this article is not owned by Analytics Vidhya and are used at the Author’s discretion. 
+
+Related
+ 
+
+algorithmsblogathonKNNmachine learning 
+
+
+ 
+
+
+Table of contents
+
+
+
+
+
+
+
+
+
+
+
+
+
+About the Author
+
+
+
+
+Varun Jain
+
+
+
+
+Our Top Authors
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+view more
+
+
+
+
+
+
+
+Download
+Analytics Vidhya App for the Latest blog/Article
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Previous Post
+
+
+Activation Functions for Neural Networks and their Implementation in Python 
+
+
+
+Next Post
+
+
+Decision Tree Machine Learning Algorithm 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Leave a Reply Your email address will not be published. Required fields are marked * Cancel reply
+
+
+ Notify me of follow-up comments by email. Notify me of new posts by email.Submit 
+
+Δ 
+
+
+
+
+
+
+
+Top Resources
+
+
+
+
+
+
+
+
+Python Tutorial: Working with CSV file for Data Science
+
+
+
+
+
+
+
+
+
+
+Harika Bonthu - 
+
+Aug 21, 2021
+
+
+
+
+
+
+
+
+
+
+45 Questions to test a data scientist on basics of..
+
+
+
+
+
+JalFaizy Shaikh - 
+
+Jan 29, 2017
+
+
+
+
+
+
+
+
+
+
+40 Questions to test a Data Scientist on Clustering Techniques..
+
+
+
+
+
+Sauravkaushik8 Kaushik - 
+
+Feb 05, 2017
+
+
+
+
+
+
+
+
+
+
+Understanding Random Forest
+
+
+
+
+
+Sruthi E R - 
+
+Jun 17, 2021
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+×
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Download App
+
+
+
+
+
+
+
+
+
+
+
+
+Analytics Vidhya
+About Us
+Our Team
+Careers
+Contact us
+
+
+Data Scientists
+Blog
+Hackathon
+Discussions
+Apply Jobs
+
+
+Companies
+Post Jobs
+Trainings
+Hiring Hackathons
+Advertising
+
+
+Visit us
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+© Copyright 2013-2022 Analytics Vidhya.
+
+
+Privacy Policy
+Terms of Use
+Refund Policy
+
+
+
+
+
+We use cookies on Analytics Vidhya websites to deliver our services, analyze web traffic, and improve your experience on the site. By using Analytics Vidhya, you agree to our Privacy Policy and Terms of Use.AcceptPrivacy & Cookies Policy
+
+
+
+
+Close
+
+
+
+
+
+
+Privacy Overview 
+This website uses cookies to improve your experience while you navigate through the website. Out of these, the cookies that are categorized as necessary are stored on your browser as they are essential for the working of basic functionalities of the website. We also use third-party cookies that help us analyze and understand how you use this website. These cookies will be stored in your browser only with your consent. You also have the option to opt-out of these cookies. But opting out of some of these cookies may affect your browsing experience.
+
+ 
+
+
+
+
+
+Necessary 
+
+
+Necessary
+
+Always Enabled
+
+
+
+
+Necessary cookies are absolutely essential for the website to function properly. This category only includes cookies that ensures basic functionalities and security features of the website. These cookies do not store any personal information. 
+
+
+
+
+
+
+Non-necessary 
+
+
+Non-necessary
+
+
+
+
+
+Any cookies that may not be particularly necessary for the website to function and is used specifically to collect user personal data via analytics, ads, other embedded contents are termed as non-necessary cookies. It is mandatory to procure user consent prior to running these cookies on your website. 
+
+
+
+
+
+
+
+
+
+
+
+
+SAVE & ACCEPT
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+×
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Please Signup to Analytics Vidhya
+
+
+
+
+
+
+
+Sign in with Google
+
+
+OR
+
+
+
+
+Sign in with Email
+
+
+
+Skip
 
 
 
